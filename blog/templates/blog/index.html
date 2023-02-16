@@ -12,11 +12,17 @@
 		/>
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet" />
 	</head>
 	<body>
+
+		<header class="page-header">
+			<div class="container">
+				<h1><a href="#">Django Blogging Application</a></h1>
+			</div>
+		</header>
+
 		{% for post in blogs %}
 		<article>
 			<h2><a href="#">{{post.title}}</a></h2>
