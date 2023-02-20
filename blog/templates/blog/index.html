@@ -1,39 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Document</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="{% static 'css/blog.css' %}" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet" />
-	</head>
-	<body>
-
-		<header class="page-header">
-			<div class="container">
-				<h1><a href="#">Django Blogging Application</a></h1>
-			</div>
-		</header>
-
+{% extends 'blog/base.html' %}
+{% block content %}
 		{% for post in blogs %}
 		<article>
-			<h2><a href="#">{{post.title}}</a></h2>
+			<h2><a href="{% url 'post_detail' id=post.id %}">{{post.title}}</a></h2> <!-- You can pass id or primary key in the variable such as id/pk = post.id/post.pk -->
 			<p>{{post.content}}</p>
 			<time>Create date: {{post.create_date}}</time>
 		</article>
 		{% endfor %}
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-			crossorigin="anonymous"
-		></script>
-	</body>
-</html>
+{% endblock %}
