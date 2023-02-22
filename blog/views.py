@@ -3,7 +3,7 @@ from .models import BlogPost
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import PostBlogForm
 from django.utils import timezone
-
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -40,7 +40,9 @@ def post_new(request):
             post_data.create_date = timezone.now()
             post_data.publish_date = timezone.now()
             post_data.save()
+            messages.success(request, 'Data inserted successfully')
             return redirect('home')
     else:
         form_data = PostBlogForm()
-    return render(request, 'blog/post_new.html',{'form_data': form_data})
+        # messages.error(request, form_data.errors)
+    return render(request, 'blog/post_new.html', context={'form_data': form_data})

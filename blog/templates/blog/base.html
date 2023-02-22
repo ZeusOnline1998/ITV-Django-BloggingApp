@@ -19,10 +19,31 @@
 
 		<header class="page-header">
 			<div class="container">
-				<h1><a href="#">Django Blogging Application</a></h1>
-				<!-- <a href="post/new/">Add new post</a> -->
+				<h1><a href="{% url 'home' %}">Django Blogging Application</a></h1>
+				<a class="btn btn-info" href="{% url 'post_new' %}" style="float: right; margin: -50px 0px 0px 0px; background-color: inherit; color: white; border: 1.5px solid black">Add new post</a>
 			</div>
 		</header>
+		
+		{% if messages %}
+			{% for message in messages %}
+				{% if message.tags == "success" %}
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+							X
+						</button>
+						<strong>{{ message }}</strong>
+					</div>
+				{% else %}
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+						</button>
+						<strong>{{ message }}</strong>
+					</div>
+					
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+		
 
 		{% block content %}
         {% endblock %}
