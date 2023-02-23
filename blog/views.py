@@ -46,3 +46,23 @@ def post_new(request):
         form_data = PostBlogForm()
         # messages.error(request, form_data.errors)
     return render(request, 'blog/post_new.html', context={'form_data': form_data})
+
+def edit_post(request, id):
+    post = get_object_or_404(BlogPost, id=id)    
+    if request.method == 'POST':
+        form_data = PostBlogForm(request.POST, instance=post)
+        if form_data.is_valid():
+            form_data.save()
+            messages.success(request, "Post Updated Successfully")
+            return redirect('post_detail', id=id)
+        else:
+            pass
+    else:
+        form_data = PostBlogForm(instance=post)
+    return render(request, 'blog/edit.html', {'form_data' : form_data})
+
+def delete_post(request, id):
+    post = get_object_or_404(BlogPost, id=id)
+    post.delete()
+    messages.success(request, 'Your post has been deleted')
+    return redirect('home')
