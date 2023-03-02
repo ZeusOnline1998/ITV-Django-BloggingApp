@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import BlogPost
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import PostBlogForm
+from .forms import PostBlogForm, RegistrationForm
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -15,6 +16,7 @@ def index(request):
     
     return render(request, 'blog/index.html', context=content)
 
+@login_required(login_url='login')
 def post_detail_view(request, id):
     # try:
         
@@ -66,3 +68,21 @@ def delete_post(request, id):
     post.delete()
     messages.success(request, 'Your post has been deleted')
     return redirect('home')
+
+def register(request):
+
+    if request.method == 'GET':
+        form = RegistrationForm()
+        return render(request, 'register.html', {'form': form})
+    
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account was successfully created for {username}')
+        else:
+            messages.error(request, 'Error while creating account')
+        return redirect('home')
+
+    return render(request, 'register.html', {'form': form})

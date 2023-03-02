@@ -63,3 +63,10 @@ h2 a:hover {
     color: white;
     background-color: #c25100;
 }
+
+.my-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* margin-left: 100px; */
+}
