@@ -5,6 +5,26 @@
             {% csrf_token %}
             <div class="form-outline">
                 <div class="col-lg-12">
+                <div class="form-group position-relative">
+                    
+                        {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{error|escape}}</strong>
+                                </div>
+                                {% endfor %}
+                        {% endfor %}
+    
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-12">
                     <div class="form-group position-relative">
                         <label>Username <span class="text-danger">*</span></label>
                         {{form.username}}
@@ -32,7 +52,7 @@
                 <div class="col-lg-12 text-center">
                     <p class="mb-0 mt-3">
                         <small class="text-dark mr-2">Forgot your password?</small>
-                        <a href="#" class="text-dark font-weight-bold">Click Here</a>
+                        <a href="{% url 'password_reset' %}" class="text-dark font-weight-bold">Click Here</a>
                     </p>
                 </div>
             </div>
