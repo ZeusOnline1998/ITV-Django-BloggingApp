@@ -125,3 +125,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = '/'
+
+
+EMAIL_HOST = 'smtp.postmarkapp.com'
+EMAIL_USE_TLS = False
+EMAIL_HOST_PORT = 587
+EMAIL_HOST_USER = 'PM-T-outbound-KPlveVWLkMh4Yhy25zOzeo'
+EMAIL_HOST_PASSWORD = 'VOelGoVwZVAw3gX3lRDfa4Pc4SG-5_qR2O_t'
+DEFAULT_FROM_EMAIL = 'parkeun@cakk.us'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
