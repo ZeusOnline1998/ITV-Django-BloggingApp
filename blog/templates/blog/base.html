@@ -22,10 +22,10 @@
 			<div class="container">
 				<h1><a href="{% url 'home' %}">Django Blogging Application</a></h1>
 				<div style="margin-top: -40px; margin-bottom: 40px;">
-					{% if request.user.is_authenticated %}
+					{% if user.is_authenticated %}
 					<span class="text-light" style="float: left;margin-bottom: -20px;">Welcome, {{request.user.first_name}}</span>
-					<a class="btn btn-info" href="{% url 'post_new' %}" style="float: right; margin-right: 0px; background-color: inherit; color: white; border: 1.5px solid black">Add new post</a>
-					<a class="btn btn-danger" href="{% url 'logout' %}" style="float: right; margin-right: 20px; border: 1.5px solid black">Logout</a>
+					<a class="btn btn-danger" href="{% url 'logout' %}" style="float: right; margin-right: 0px; border: 1.5px solid black">Logout</a>
+					<a class="btn btn-info" href="{% url 'post_new' %}" style="float: right; margin-right: 20px; background-color: inherit; color: white; border: 1.5px solid black">Add new post</a>
 					{% else %}
 					<a class="btn btn-danger" href="{% url 'register' %}" style="float: right; margin-right: 20px; border: 1.5px solid black">Register</a>
 					<a class="btn btn-success" href="{% url 'login' %}" style="float: right; margin-right: 20px; border: 1.5px solid black">Login</a>

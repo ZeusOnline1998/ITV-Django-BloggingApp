@@ -2,6 +2,7 @@
 
 {% block content %}
 
+    
     <article>
         {% if post.publish_date %}
             <time>
@@ -15,7 +16,9 @@
             
     </article>
 
-    <a class="btn btn-primary" href="{% url 'edit_post' id=post.id %}" style="">Edit Post</a>
-    <a class="btn btn-danger" href="{% url 'delete_post' id=post.id %}" style="">Delete Post</a>
+    {% if request.user == post.author %}
+        <a class="btn btn-primary" href="{% url 'edit_post' id=post.id %}" style="">Edit Post</a>
+        <a class="btn btn-danger" href="{% url 'delete_post' id=post.id %}" style="">Delete Post</a>
+    {% endif %}
 
 {% endblock %}

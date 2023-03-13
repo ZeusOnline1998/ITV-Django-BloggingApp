@@ -10,12 +10,10 @@ urlpatterns = [
     path('post/delete/<int:id>', views.delete_post, name='delete_post'),
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('register/', views.register, name='register'),
-    path('logout/', auth_view.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_view.LogoutView.as_view(template_name='logout.html'), name='logout'),
     #Passwor
     path('password-reset/', auth_view.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
     path('password-reset-done/', auth_view.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
-    path('password-reset-complete/', auth_view.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
-    
-    
+    path('password-reset-complete/', auth_view.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),    
 ]
